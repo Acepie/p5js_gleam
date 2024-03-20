@@ -16,7 +16,9 @@ const js = (name: string) =>
 
 const gleam = (name: string, args: string[]) =>
   `@external(javascript, "../p5js_ffi.mjs", "${name}")
-pub fn ${camelToSnakeCase(name)}(p: P5${args.length ? ", " : ""}${args.join(", ")}) -> Nil
+pub fn ${camelToSnakeCase(name)}(p: P5${args.length ? ", " : ""}${args.join(
+    ", "
+  )}) -> Nil
 
 `;
 

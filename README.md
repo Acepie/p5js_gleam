@@ -5,6 +5,7 @@ A demo showcasing how to create and use bindings for [p5js](https://p5js.org/)
 This project is made up of
 
 - A [bun](https://bun.sh/) script that is used to generate bindings for p5js class methods
+  - Script is based on script created for [glare](https://github.com/Enderchief/glare/tree/master/scripts)
 - An html page that shows how to use those bindings to make a basic animation
 
 ## Generating FFI Bindings
