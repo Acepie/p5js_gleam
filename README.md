@@ -17,7 +17,15 @@ bun run ./scripts/generate_p5.ts
 
 ### Bundling the app
 
-This example uses [esgleam](https://hexdocs.pm/esgleam/) to bundle the main gleam module for use in a static site. To bundle the app run
+This example uses [esgleam](https://hexdocs.pm/esgleam/) to bundle the main gleam module for use in a static site. 
+
+To install esbuild run the following command. You should only need to run it once.
+
+```bash
+gleam run -m esgleam/bundle
+```
+
+To bundle the app run the following command after making code changes.
 
 ```bash
 gleam run -m esgleam/bundle
