@@ -1,25 +1,32 @@
 # p5js_gleam
 
-[![Package Version](https://img.shields.io/hexpm/v/p5js_gleam)](https://hex.pm/packages/p5js_gleam)
-[![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/p5js_gleam/)
+A demo showcasing how to create and use bindings for [p5js](https://p5js.org/)
 
-```sh
-gleam add p5js_gleam
+This project is made up of
+
+- A [bun](https://bun.sh/) script that is used to generate bindings for p5js class methods
+- An html page that shows how to use those bindings to make a basic animation
+
+## Generating FFI Bindings
+
+To generate the FFI bindings you will need bun installed. Once you have bun installed run
+
+```bash
+bun run ./scripts/generate_p5.ts
 ```
-```gleam
-import p5js_gleam
 
-pub fn main() {
-  // TODO: An example of the project in use
-}
+### Bundling the app
+
+This example uses [esgleam](https://hexdocs.pm/esgleam/) to bundle the main gleam module for use in a static site. To bundle the app run
+
+```bash
+gleam run -m esgleam/bundle
 ```
 
-Further documentation can be found at <https://hexdocs.pm/p5js_gleam>.
+### Serving the app
 
-## Development
+You can use any static site server to host the app but for development you can continue to use esgleam by running
 
-```sh
-gleam run   # Run the project
-gleam test  # Run the tests
-gleam shell # Run an Erlang shell
+```bash
+gleam run -m esgleam/serve
 ```
