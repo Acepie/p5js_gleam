@@ -1,6 +1,8 @@
 const elements = {
   createCanvas: ["width: Float", "height: Float"],
-  background: ["gray_scale: Int"],
+  text: ["text: String", "bottom_corner_x: Float", "bottom_corner_y: Float"],
+  textSize: ["size: Int"],
+  background: ["color: String"],
   ellipse: [
     "x_center: Float",
     "y_center: Float",
@@ -48,27 +50,17 @@ const js = (name: string) =>
 `;
 
 const gleam = (name: string, args: string[]) =>
-  `@external(javascript, "../p5js_ffi.mjs", "${name}")
+  `/// A binding to the p5.js \`${name}\` function. Takes a p5 instance and the function's arguments and returns the p5 instance.
+@external(javascript, "../p5js_ffi.mjs", "${name}")
 pub fn ${camelToSnakeCase(name)}(p: P5${args.length ? ", " : ""}${args.join(
     ", ",
   )}) -> P5
 
 `;
 
-let outGleam = `import gleam/option.{type Option}
+let outGleam = `import p5js_gleam.{type P5, type SketchConfig}
 
-pub type P5
-
-pub type SketchConfig(model) {
-  SketchConfig(
-    init: fn(P5) -> model,
-    draw: fn(P5, model) -> Nil,
-    on_tick: Option(fn(model) -> model),
-    on_key: Option(fn(String, model) -> model),
-    on_mouse: Option(fn(Float, Float, model) -> model),
-  )
-}
-
+/// Starts a p5.js sketch with the given configuration.
 @external(javascript, "../p5js_ffi.mjs", "startSketch")
 pub fn start_sketch(config: SketchConfig(model)) -> Nil
 
@@ -112,6 +104,6 @@ for (const element of Object.entries(elements)) {
 }
 
 await Promise.all([
-  Bun.write("src/gen/p5js_gleam.gleam", outGleam),
+  Bun.write("src/p5js_gleam/bindings.gleam", outGleam),
   Bun.write("src/p5js_ffi.mjs", outJs),
 ]);

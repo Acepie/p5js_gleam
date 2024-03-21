@@ -33,6 +33,16 @@ export function createCanvas(p, ...args) {
   return p;
 }
 
+export function text(p, ...args) {
+  p.text(...args);
+  return p;
+}
+
+export function textSize(p, ...args) {
+  p.textSize(...args);
+  return p;
+}
+
 export function background(p, ...args) {
   p.background(...args);
   return p;

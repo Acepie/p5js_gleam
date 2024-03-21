@@ -1,12 +1,72 @@
 # p5js_gleam
 
-A demo showcasing how to create and use bindings for [p5js](https://p5js.org/)
+A simple game library providing [p5js](https://p5js.org/) bindings for Gleam in a functional style to make basic games and animations. Heavily inspired by the Racket library 2htdp/universe.
 
-This project is made up of
+This project is primarily made up of
 
 - A [bun](https://bun.sh/) script that is used to generate bindings for p5js class methods
   - Script is based on script created for [glare](https://github.com/Enderchief/glare/tree/master/scripts)
-- An html page that shows how to use those bindings to make a basic animation
+- A wrapper game engine that provides a functional interface to p5js
+
+## Using the library
+
+Add the library to your project by running the following command
+
+```bash
+gleam add p5js_gleam
+```
+
+Then add a call to the `start_sketch` function in your main function.
+
+```gleam
+import p5js_gleam.{type P5, SketchConfig}
+import p5js_gleam/bindings as p5
+import gleam/option
+
+fn setup(p: P5) -> String {
+  p5.create_canvas(p, 800.0, 600.0)
+  "Hello, world!"
+}
+
+fn draw(p: P5, state: String) -> Nil {
+  p5.background(p, "#ffffff")
+  p5.fill(p, "#000000")
+  p5.text(p, state, 400.0, 300.0)
+  Nil
+}
+
+pub fn main() {
+  p5.start_sketch(SketchConfig(
+    init: setup,
+    draw: draw,
+    on_tick: option.None,
+    on_key: option.None,
+    on_mouse: option.None,
+  ))
+}
+```
+
+Afterwards you will need to build your project and include it in an html file. The html file must import p5js as a module before the generated javascript file. The easiest way to do this is to load the p5js library from a CDN.
+
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ball Spawner</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.2/lib/p5.js"></script>
+    <script type="module">
+      import { main } from "./ball_spawner.js";
+      main();
+    </script>
+  </head>
+  <body></body>
+</html>
+```
+
+To see the library in action you can serve one of the examples in the `examples` directory.
 
 ## Generating FFI Bindings
 
@@ -14,28 +74,4 @@ To generate the FFI bindings you will need bun installed. Once you have bun inst
 
 ```bash
 bun run ./scripts/generate_p5.ts
-```
-
-### Bundling the app
-
-This example uses [esgleam](https://hexdocs.pm/esgleam/) to bundle the main gleam module for use in a static site. 
-
-To install esbuild run the following command. You should only need to run it once.
-
-```bash
-gleam run -m esgleam/bundle
-```
-
-To bundle the app run the following command after making code changes.
-
-```bash
-gleam run -m esgleam/bundle
-```
-
-### Serving the app
-
-You can use any static site server to host the app but for development you can continue to use esgleam by running
-
-```bash
-gleam run -m esgleam/serve
 ```
