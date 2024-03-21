@@ -53,7 +53,7 @@ const gleam = (name: string, args: string[]) =>
   `/// A binding to the p5.js \`${name}\` function. Takes a p5 instance and the function's arguments and returns the p5 instance.
 @external(javascript, "../p5js_ffi.mjs", "${name}")
 pub fn ${camelToSnakeCase(name)}(p: P5${args.length ? ", " : ""}${args.join(
-    ", ",
+    ", "
   )}) -> P5
 
 `;
@@ -62,7 +62,7 @@ let outGleam = `import p5js_gleam.{type P5, type SketchConfig}
 
 /// Starts a p5.js sketch with the given configuration.
 @external(javascript, "../p5js_ffi.mjs", "startSketch")
-pub fn start_sketch(config: SketchConfig(model)) -> Nil
+pub fn start_sketch(config: SketchConfig(model, ignored)) -> Nil
 
 `;
 

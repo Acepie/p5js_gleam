@@ -2,4 +2,4 @@
 *.ez
 /build
 erl_crash.dump
-dist/p5js_gleam.js
+dist/*.js

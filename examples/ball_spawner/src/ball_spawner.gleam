@@ -38,15 +38,12 @@ fn setup(p: P5) -> WorldState {
   WorldState([])
 }
 
-fn draw(p: P5, state: WorldState) -> Nil {
+fn draw(p: P5, state: WorldState) {
   p5.background(p, background_color)
-  {
-    use Ball(Vector(x, y), _, color) <- list.map(state.balls)
-    p
-    |> p5.fill(color)
-    |> p5.ellipse(x, y, ball_size *. 2.0, ball_size *. 2.0)
-  }
-  Nil
+  use Ball(Vector(x, y), _, color) <- list.map(state.balls)
+  p
+  |> p5.fill(color)
+  |> p5.ellipse(x, y, ball_size *. 2.0, ball_size *. 2.0)
 }
 
 fn advance_ball(b: Ball) -> Ball {
@@ -80,7 +77,6 @@ fn tick(state: WorldState) -> WorldState {
       _, _ -> advance_ball(ball)
     }
   }
-
   WorldState(balls)
 }
 
@@ -97,7 +93,6 @@ fn on_mouse(
   let assert [color, ..] =
     colors
     |> list.shuffle()
-
   let x_speed = case float.random() {
     x if x <. 0.5 -> ball_speed
     _ -> float.negate(ball_speed)
@@ -106,7 +101,6 @@ fn on_mouse(
     x if x <. 0.5 -> ball_speed
     _ -> float.negate(ball_speed)
   }
-
   WorldState([
     Ball(Vector(x_position, y_position), Vector(x_speed, y_speed), color),
     ..state.balls
