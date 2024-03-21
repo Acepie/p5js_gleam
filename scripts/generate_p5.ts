@@ -1,7 +1,39 @@
 const elements = {
-  createCanvas: ["width: Int", "height: Int"],
+  createCanvas: ["width: Float", "height: Float"],
   background: ["gray_scale: Int"],
-  ellipse: ["x_center: Int", "y_center: Int", "width: Int", "height: Int"],
+  ellipse: [
+    "x_center: Float",
+    "y_center: Float",
+    "width: Float",
+    "height: Float",
+  ],
+  circle: ["x_center: Float", "y_center: Float", "radius: Float"],
+  rectangle: [
+    "top_left_x: Float",
+    "top_left_y: Float",
+    "width: Float",
+    "height: Float",
+  ],
+  square: ["top_left_x: Float", "top_left_y: Float", "side_length: Float"],
+  line: [
+    "point1_x: Float",
+    "point1_y: Float",
+    "point2_x: Float",
+    "point2_y: Float",
+  ],
+  quad: [
+    "p1_x: Float",
+    "p1_y: Float",
+    "p2_x: Float",
+    "p2_y: Float",
+    "p3_x: Float",
+    "p3_y: Float",
+    "p4_x: Float",
+    "p4_y: Float",
+  ],
+  fill: ["color_hex: String"],
+  stroke: ["color_hex: String"],
+  strokeWeight: ["weight: Int"],
 };
 
 const camelToSnakeCase = (str: string) =>
@@ -9,7 +41,8 @@ const camelToSnakeCase = (str: string) =>
 
 const js = (name: string) =>
   `export function ${name}(p, ...args) {
-  return p.${name}(...args);
+  p.${name}(...args);
+  return p;
 }
 
 `;
@@ -17,29 +50,57 @@ const js = (name: string) =>
 const gleam = (name: string, args: string[]) =>
   `@external(javascript, "../p5js_ffi.mjs", "${name}")
 pub fn ${camelToSnakeCase(name)}(p: P5${args.length ? ", " : ""}${args.join(
-    ", "
-  )}) -> Nil
+    ", ",
+  )}) -> P5
 
 `;
 
-let outGleam = `pub type P5
+let outGleam = `import gleam/option.{type Option}
+
+pub type P5
+
+pub type SketchConfig(model) {
+  SketchConfig(
+    init: fn(P5) -> model,
+    draw: fn(P5, model) -> Nil,
+    on_tick: Option(fn(model) -> model),
+    on_key: Option(fn(String, model) -> model),
+    on_mouse: Option(fn(Float, Float, model) -> model),
+  )
+}
 
 @external(javascript, "../p5js_ffi.mjs", "startSketch")
-pub fn start_sketch(init: fn(P5) -> model, draw: fn(P5, model) -> Nil, on_tick: fn(model) -> model) -> Nil
+pub fn start_sketch(config: SketchConfig(model)) -> Nil
 
 `;
 
-let outJs = `export const startSketch = (setup, draw, tick) => {
+let outJs = `import { is_some, unwrap } from "../gleam_stdlib/gleam/option.mjs";
+
+export const startSketch = (config) => {
   let model;
   new p5(function (p) {
     p.setup = function () {
-      model = setup(p);
+      model = config.init(p);
     };
 
     p.draw = function () {
-      draw(p, model);
-      model = tick(model);
+      config.draw(p, model);
+      if (is_some(config.on_tick)) {
+        model = unwrap(config.on_tick)(model);
+      }
     };
+
+    if (is_some(config.on_key)) {
+      p.keyPressed = function () {
+        model = unwrap(config.on_key)(p.key, model);
+      }
+    }
+
+    if (is_some(config.on_mouse)) {
+      p.mouseClicked = function () {
+        model = unwrap(config.on_mouse)(p.pmouseX, p.pmouseY, model);
+      }
+    }
   });
 };
 
