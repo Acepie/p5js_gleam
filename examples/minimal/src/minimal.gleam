@@ -7,11 +7,10 @@ fn setup(p: P5) -> String {
   "Hello, world!"
 }
 
-fn draw(p: P5, state: String) -> Nil {
+fn draw(p: P5, state: String) {
   p5.background(p, "#ffffff")
   p5.fill(p, "#000000")
   p5.text(p, state, 400.0, 300.0)
-  Nil
 }
 
 pub fn main() {
