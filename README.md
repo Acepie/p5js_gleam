@@ -1,5 +1,8 @@
 # p5js_gleam
 
+[![Package Version](https://img.shields.io/hexpm/v/p5js_gleam)](https://hex.pm/packages/p5js_gleam)
+[![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/p5js_gleam/)
+
 A simple game library providing [p5js](https://p5js.org/) bindings for Gleam in a functional style to make basic games and animations. Heavily inspired by the Racket library 2htdp/universe.
 
 This project is primarily made up of
