@@ -58,8 +58,8 @@ export function circle(p, ...args) {
   return p;
 }
 
-export function rectangle(p, ...args) {
-  p.rectangle(...args);
+export function rect(p, ...args) {
+  p.rect(...args);
   return p;
 }
 

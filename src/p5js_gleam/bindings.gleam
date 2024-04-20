@@ -39,9 +39,9 @@ pub fn ellipse(
 @external(javascript, "../p5js_ffi.mjs", "circle")
 pub fn circle(p: P5, x_center: Float, y_center: Float, radius: Float) -> P5
 
-/// A binding to the p5.js `rectangle` function. Takes a p5 instance and the function's arguments and returns the p5 instance.
-@external(javascript, "../p5js_ffi.mjs", "rectangle")
-pub fn rectangle(
+/// A binding to the p5.js `rect` function. Takes a p5 instance and the function's arguments and returns the p5 instance.
+@external(javascript, "../p5js_ffi.mjs", "rect")
+pub fn rect(
   p: P5,
   top_left_x: Float,
   top_left_y: Float,

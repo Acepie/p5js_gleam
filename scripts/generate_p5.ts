@@ -10,7 +10,7 @@ const elements = {
     "height: Float",
   ],
   circle: ["x_center: Float", "y_center: Float", "radius: Float"],
-  rectangle: [
+  rect: [
     "top_left_x: Float",
     "top_left_y: Float",
     "width: Float",
