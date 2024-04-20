@@ -1,9 +1,9 @@
-import p5js_gleam.{type P5, SketchConfig}
-import p5js_gleam/bindings as p5
-import gleam/option
 import gleam/float
 import gleam/io
 import gleam/list
+import gleam/option
+import p5js_gleam.{type P5, SketchConfig}
+import p5js_gleam/bindings as p5
 
 type Vector {
   Vector(x: Float, y: Float)

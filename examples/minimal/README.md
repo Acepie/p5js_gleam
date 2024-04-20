@@ -1,25 +1,27 @@
 # minimal
 
-[![Package Version](https://img.shields.io/hexpm/v/minimal)](https://hex.pm/packages/minimal)
-[![Hex Docs](https://img.shields.io/badge/hex-docs-ffaff3)](https://hexdocs.pm/minimal/)
+Bare minimum example rendering a hello message to the screen.
 
-```sh
-gleam add minimal
-```
-```gleam
-import minimal
+## Bundling the app
 
-pub fn main() {
-  // TODO: An example of the project in use
-}
+This example uses [esgleam](https://hexdocs.pm/esgleam/) to bundle the main gleam module for use in a static site.
+
+To install esbuild run the following command. You should only need to run it once.
+
+```bash
+gleam run -m esgleam/install
 ```
 
-Further documentation can be found at <https://hexdocs.pm/minimal>.
+To bundle the app run the following command after making code changes.
 
-## Development
+```bash
+gleam run -m esgleam/bundle
+```
 
-```sh
-gleam run   # Run the project
-gleam test  # Run the tests
-gleam shell # Run an Erlang shell
+## Serving the app
+
+You can use any static site server to host the app but for development you can continue to use esgleam by running
+
+```bash
+gleam run -m esgleam/serve
 ```
