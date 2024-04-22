@@ -11,6 +11,14 @@ This project is primarily made up of
   - Script is based on script created for [glare](https://github.com/Enderchief/glare/tree/master/scripts)
 - A wrapper game engine that provides a functional interface to p5js
 
+## Showcase
+
+An example generated maze
+![a maze](./assets/maze_room.png)
+
+An example ball spawner
+![a ball spawner](./assets/ball_spawner.mp4)
+
 ## Using the library
 
 Add the library to your project by running the following command
