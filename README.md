@@ -17,7 +17,7 @@ An example generated maze
 ![a maze](./assets/maze_room.png)
 
 An example ball spawner
-![a ball spawner](./assets/ball_spawner.mp4)
+[![a ball spawner](./assets/ball_spawner.mp4)](./assets/ball_spawner.mp4)
 
 ## Using the library
 
