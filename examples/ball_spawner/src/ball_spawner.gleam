@@ -1,8 +1,8 @@
 import gleam/float
 import gleam/io
 import gleam/list
-import gleam/option
-import p5js_gleam.{type P5, SketchConfig}
+import gleam/string
+import p5js_gleam.{type P5}
 import p5js_gleam/bindings as p5
 
 type Vector {
@@ -67,7 +67,6 @@ fn flip_ball_y(b: Ball) -> Ball {
 }
 
 fn tick(state: WorldState) -> WorldState {
-  io.debug(state)
   let balls = {
     use ball <- list.map(state.balls)
     let Ball(Vector(x, y), _, _) = ball
@@ -80,12 +79,47 @@ fn tick(state: WorldState) -> WorldState {
   WorldState(balls)
 }
 
-fn on_key(key: String, state: WorldState) -> WorldState {
-  io.println(key)
+fn on_key_pressed(key: String, key_code: Int, state: WorldState) -> WorldState {
+  io.debug(
+    "On key pressed called with key: "
+    <> key
+    <> ", keyCode: "
+    <> string.inspect(key_code)
+    <> ", and current state: "
+    <> string.inspect(state),
+  )
   state
 }
 
-fn on_mouse(
+fn on_key_released(key: String, key_code: Int, state: WorldState) -> WorldState {
+  io.debug(
+    "On key released called with key: "
+    <> key
+    <> ", keyCode: "
+    <> string.inspect(key_code)
+    <> ", and current state: "
+    <> string.inspect(state),
+  )
+  state
+}
+
+fn on_mouse_moved(
+  x_position: Float,
+  y_position: Float,
+  state: WorldState,
+) -> WorldState {
+  io.debug(
+    "On mouse moved called with x position: "
+    <> string.inspect(x_position)
+    <> ", y position: "
+    <> string.inspect(y_position)
+    <> ", and current state: "
+    <> string.inspect(state),
+  )
+  state
+}
+
+fn on_mouse_clicked(
   x_position: Float,
   y_position: Float,
   state: WorldState,
@@ -108,11 +142,11 @@ fn on_mouse(
 }
 
 pub fn main() {
-  p5.start_sketch(SketchConfig(
-    init: setup,
-    draw: draw,
-    on_tick: option.Some(tick),
-    on_key: option.Some(on_key),
-    on_mouse: option.Some(on_mouse),
-  ))
+  p5js_gleam.create_sketch(init: setup, draw: draw)
+  |> p5js_gleam.set_on_tick(tick)
+  |> p5js_gleam.set_on_key_pressed(on_key_pressed)
+  |> p5js_gleam.set_on_key_released(on_key_released)
+  |> p5js_gleam.set_on_mouse_moved(on_mouse_moved)
+  |> p5js_gleam.set_on_mouse_clicked(on_mouse_clicked)
+  |> p5.start_sketch
 }

@@ -1,5 +1,4 @@
-import gleam/option
-import p5js_gleam.{type P5, SketchConfig}
+import p5js_gleam.{type P5}
 import p5js_gleam/bindings as p5
 
 fn setup(p: P5) -> String {
@@ -14,11 +13,6 @@ fn draw(p: P5, state: String) {
 }
 
 pub fn main() {
-  p5.start_sketch(SketchConfig(
-    init: setup,
-    draw: draw,
-    on_tick: option.None,
-    on_key: option.None,
-    on_mouse: option.None,
-  ))
+  p5js_gleam.create_sketch(init: setup, draw: draw)
+  |> p5.start_sketch
 }

@@ -2,4 +2,4 @@
 *.ez
 /build
 erl_crash.dump
-dist/*.js
+/**/dist/*.js

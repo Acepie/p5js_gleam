@@ -82,16 +82,28 @@ export const startSketch = (config) => {
       }
     };
 
-    if (is_some(config.on_key)) {
+    if (is_some(config.on_key_pressed)) {
       p.keyPressed = function () {
-        model = unwrap(config.on_key)(p.key, model);
-      }
+        model = unwrap(config.on_key_pressed)(p.key, p.keyCode, model);
+      };
     }
 
-    if (is_some(config.on_mouse)) {
+    if (is_some(config.on_key_released)) {
+      p.keyReleased = function () {
+        model = unwrap(config.on_key_released)(p.key, p.keyCode, model);
+      };
+    }
+
+    if (is_some(config.on_mouse_clicked)) {
       p.mouseClicked = function () {
-        model = unwrap(config.on_mouse)(p.pmouseX, p.pmouseY, model);
-      }
+        model = unwrap(config.on_mouse_clicked)(p.pmouseX, p.pmouseY, model);
+      };
+    }
+
+    if (is_some(config.on_mouse_moved)) {
+      p.mouseMoved = function () {
+        model = unwrap(config.on_mouse_moved)(p.pmouseX, p.pmouseY, model);
+      };
     }
   });
 };
