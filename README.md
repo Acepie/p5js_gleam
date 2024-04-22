@@ -14,10 +14,14 @@ This project is primarily made up of
 ## Showcase
 
 An example generated maze
-![a maze](./assets/maze_room.png)
+
+![maze_room](https://github.com/Acepie/p5js_gleam/assets/5996838/e7e21eb0-dad2-486d-99bb-40f4c088e272)
+spawner
 
 An example ball spawner
-[![a ball spawner](./assets/ball_spawner.mp4)](./assets/ball_spawner.mp4)
+
+https://github.com/Acepie/p5js_gleam/assets/5996838/4869513b-095a-4244-8fc6-6f63738e4c97
+
 
 ## Using the library
 
