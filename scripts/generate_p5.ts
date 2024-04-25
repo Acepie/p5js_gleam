@@ -35,6 +35,7 @@ const elements = {
   ],
   fill: ["color_hex: String"],
   stroke: ["color_hex: String"],
+  noStroke: [],
   strokeWeight: ["weight: Int"],
 };
 

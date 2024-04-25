@@ -100,6 +100,11 @@ export function stroke(p, ...args) {
   return p;
 }
 
+export function noStroke(p, ...args) {
+  p.noStroke(...args);
+  return p;
+}
+
 export function strokeWeight(p, ...args) {
   p.strokeWeight(...args);
   return p;

@@ -90,6 +90,10 @@ pub fn fill(p: P5, color_hex: String) -> P5
 @external(javascript, "../p5js_ffi.mjs", "stroke")
 pub fn stroke(p: P5, color_hex: String) -> P5
 
+/// A binding to the p5.js `noStroke` function. Takes a p5 instance and the function's arguments and returns the p5 instance.
+@external(javascript, "../p5js_ffi.mjs", "noStroke")
+pub fn no_stroke(p: P5) -> P5
+
 /// A binding to the p5.js `strokeWeight` function. Takes a p5 instance and the function's arguments and returns the p5 instance.
 @external(javascript, "../p5js_ffi.mjs", "strokeWeight")
 pub fn stroke_weight(p: P5, weight: Int) -> P5
