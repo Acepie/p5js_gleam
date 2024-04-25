@@ -51,10 +51,10 @@ const js = (name: string) =>
 `;
 
 const gleam = (name: string, args: string[]) =>
-  `/// A binding to the p5.js \`${name}\` function. Takes a p5 instance and the function's arguments and returns the p5 instance.
+  `/// A binding to the p5.js [\`${name}\`](https://p5js.org/reference/#/p5/${name}) function. Takes a p5 instance and the function's arguments and returns the p5 instance.
 @external(javascript, "../p5js_ffi.mjs", "${name}")
 pub fn ${camelToSnakeCase(name)}(p: P5${args.length ? ", " : ""}${args.join(
-    ", "
+    ", ",
   )}) -> P5
 
 `;
