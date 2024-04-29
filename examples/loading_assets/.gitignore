@@ -2,5 +2,3 @@
 *.ez
 /build
 erl_crash.dump
-/**/dist/*.js
-.DS_Store

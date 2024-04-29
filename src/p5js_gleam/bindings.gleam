@@ -1,4 +1,4 @@
-import p5js_gleam.{type P5, type SketchConfig}
+import p5js_gleam.{type P5, type P5Font, type P5Image, type SketchConfig}
 
 /// Starts a p5.js sketch with the given configuration.
 @external(javascript, "../p5js_ffi.mjs", "startSketch")
@@ -16,6 +16,14 @@ pub fn text(
   bottom_corner_x: Float,
   bottom_corner_y: Float,
 ) -> P5
+
+/// A binding to the p5.js [`textFont`](https://p5js.org/reference/#/p5/textFont) function. Takes a p5 instance and the function's arguments and returns the p5 instance.
+@external(javascript, "../p5js_ffi.mjs", "textFont")
+pub fn text_font(p: P5, font: P5Font) -> P5
+
+/// A binding to the p5.js [`textFont`](https://p5js.org/reference/#/p5/textFont) function. Takes a p5 instance and the function's arguments and returns the p5 instance.
+@external(javascript, "../p5js_ffi.mjs", "textFontFromString")
+pub fn text_font_from_string(p: P5, font: String) -> P5
 
 /// A binding to the p5.js [`textSize`](https://p5js.org/reference/#/p5/textSize) function. Takes a p5 instance and the function's arguments and returns the p5 instance.
 @external(javascript, "../p5js_ffi.mjs", "textSize")
@@ -82,9 +90,24 @@ pub fn quad(
   p4_y: Float,
 ) -> P5
 
+/// A binding to the p5.js [`image`](https://p5js.org/reference/#/p5/image) function. Takes a p5 instance and the function's arguments and returns the p5 instance.
+@external(javascript, "../p5js_ffi.mjs", "image")
+pub fn image(
+  p: P5,
+  image: P5Image,
+  top_left_x: Float,
+  top_left_y: Float,
+  width: Float,
+  height: Float,
+) -> P5
+
 /// A binding to the p5.js [`fill`](https://p5js.org/reference/#/p5/fill) function. Takes a p5 instance and the function's arguments and returns the p5 instance.
 @external(javascript, "../p5js_ffi.mjs", "fill")
 pub fn fill(p: P5, color_hex: String) -> P5
+
+/// A binding to the p5.js [`noFill`](https://p5js.org/reference/#/p5/noFill) function. Takes a p5 instance and the function's arguments and returns the p5 instance.
+@external(javascript, "../p5js_ffi.mjs", "noFill")
+pub fn no_fill(p: P5) -> P5
 
 /// A binding to the p5.js [`stroke`](https://p5js.org/reference/#/p5/stroke) function. Takes a p5 instance and the function's arguments and returns the p5 instance.
 @external(javascript, "../p5js_ffi.mjs", "stroke")
@@ -97,3 +120,19 @@ pub fn no_stroke(p: P5) -> P5
 /// A binding to the p5.js [`strokeWeight`](https://p5js.org/reference/#/p5/strokeWeight) function. Takes a p5 instance and the function's arguments and returns the p5 instance.
 @external(javascript, "../p5js_ffi.mjs", "strokeWeight")
 pub fn stroke_weight(p: P5, weight: Int) -> P5
+
+/// A binding to the p5.js [`erase`](https://p5js.org/reference/#/p5/erase) function. Takes a p5 instance and the function's arguments and returns the p5 instance.
+@external(javascript, "../p5js_ffi.mjs", "erase")
+pub fn erase(p: P5, strength: Int, edge_strength: Int) -> P5
+
+/// A binding to the p5.js [`noErase`](https://p5js.org/reference/#/p5/noErase) function. Takes a p5 instance and the function's arguments and returns the p5 instance.
+@external(javascript, "../p5js_ffi.mjs", "noErase")
+pub fn no_erase(p: P5) -> P5
+
+/// A binding to the p5.js [`loadImage`](https://p5js.org/reference/#/p5/loadImage) function. Takes a p5 instance and the function's arguments and returns the p5 instance.
+@external(javascript, "../p5js_ffi.mjs", "loadImage")
+pub fn load_image(p: P5, path: String) -> P5Image
+
+/// A binding to the p5.js [`loadFont`](https://p5js.org/reference/#/p5/loadFont) function. Takes a p5 instance and the function's arguments and returns the p5 instance.
+@external(javascript, "../p5js_ffi.mjs", "loadFont")
+pub fn load_font(p: P5, path: String) -> P5Font

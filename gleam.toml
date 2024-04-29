@@ -1,5 +1,5 @@
 name = "p5js_gleam"
-version = "2.0.2"
+version = "2.1.0"
 target = "javascript"
 
 description = "A simple game library providing p5.js bindings for Gleam in a functional style to make basic games and animations. Heavily inspired by the Racket library 2htdp/universe"
