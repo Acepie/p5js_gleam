@@ -26,7 +26,7 @@ const elements: Record<string, Binding> = {
     ],
   },
   circle: {
-    arguments: ["x_center: Float", "y_center: Float", "radius: Float"],
+    arguments: ["x_center: Float", "y_center: Float", "diameter: Float"],
   },
   rect: {
     arguments: [
@@ -181,7 +181,7 @@ for (const [elementName, elementBinding] of Object.entries(elements)) {
   outJs += js(
     elementName,
     elementBinding.bindingName ?? elementName,
-    Boolean(elementBinding.returnType)
+    Boolean(elementBinding.returnType),
   );
 }
 
