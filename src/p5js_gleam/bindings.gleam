@@ -29,6 +29,10 @@ pub fn text_font_from_string(p: P5, font: String) -> P5
 @external(javascript, "../p5js_ffi.mjs", "textSize")
 pub fn text_size(p: P5, size: Int) -> P5
 
+/// A binding to the p5.js [`textWidth`](https://p5js.org/reference/#/p5/textWidth) function. Takes a p5 instance and the function's arguments and returns the p5 instance.
+@external(javascript, "../p5js_ffi.mjs", "textWidth")
+pub fn text_width(p: P5, text: String) -> Float
+
 /// A binding to the p5.js [`background`](https://p5js.org/reference/#/p5/background) function. Takes a p5 instance and the function's arguments and returns the p5 instance.
 @external(javascript, "../p5js_ffi.mjs", "background")
 pub fn background(p: P5, color: String) -> P5

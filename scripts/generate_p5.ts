@@ -16,6 +16,7 @@ const elements: Record<string, Binding> = {
   textFont: { arguments: ["font: P5Font"] },
   textFontFromString: { arguments: ["font: String"], bindingName: "textFont" },
   textSize: { arguments: ["size: Int"] },
+  textWidth: { arguments: ["text: String"], returnType: "Float" },
   background: { arguments: ["color: String"] },
   ellipse: {
     arguments: [
@@ -181,7 +182,7 @@ for (const [elementName, elementBinding] of Object.entries(elements)) {
   outJs += js(
     elementName,
     elementBinding.bindingName ?? elementName,
-    Boolean(elementBinding.returnType),
+    Boolean(elementBinding.returnType)
   );
 }
 

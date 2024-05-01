@@ -72,6 +72,10 @@ export function textSize(p, ...args) {
   return p;
 }
 
+export function textWidth(p, ...args) {
+  return p.textWidth(...args);
+}
+
 export function background(p, ...args) {
   p.background(...args);
   return p;
