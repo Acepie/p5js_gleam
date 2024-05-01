@@ -23,13 +23,33 @@ An example ball spawner
 
 ## Using the library
 
-Add the library to your project by running the following command
+To use this library you will need to build your gleam project and include it in an html file. The html file must import p5js as a module before the generated javascript file. The easiest way to do this is to load the p5js library from a CDN.
+
+```html
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ball Spawner</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.2/lib/p5.js"></script>
+    <script type="module">
+      import { main } from "./ball_spawner.js";
+      main();
+    </script>
+  </head>
+  <body></body>
+</html>
+```
+
+Once you have an html file with p5js and your output module setup, add the library to your project by running the following command
 
 ```bash
 gleam add p5js_gleam
 ```
 
-Then add a call to the `start_sketch` function in your main function.
+Then add a call to the `create_sketch` function in your main function.
 
 ```gleam
 import p5js_gleam.{type P5}
@@ -52,27 +72,7 @@ pub fn main() {
 }
 ```
 
-Afterwards you will need to build your project and include it in an html file. The html file must import p5js as a module before the generated javascript file. The easiest way to do this is to load the p5js library from a CDN.
-
-```html
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ball Spawner</title>
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.2/lib/p5.js"></script>
-    <script type="module">
-      import { main } from "./ball_spawner.js";
-      main();
-    </script>
-  </head>
-  <body></body>
-</html>
-```
-
-To see the library in action you can serve one of the examples in the `examples` directory.
+To see the library in action you can download and serve one of the examples in the `examples` directory.
 
 ## Generating FFI Bindings
 
