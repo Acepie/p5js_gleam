@@ -1,21 +1,25 @@
 import { is_some, unwrap } from "../gleam_stdlib/gleam/option.mjs";
 
+const p = null
+
 export const startSketch = (config) => {
   let model;
   let assets;
-  new p5(function (p) {
+  new p5(function (p_) {
+    p = p_
+
     if (config.preload) {
       p.preload = function () {
-        assets = config.preload(p);
+        assets = config.preload();
       };
     }
 
     p.setup = function () {
-      model = config.init(p);
+      model = config.init();
     };
 
     p.draw = function () {
-      config.draw(p, model, assets);
+      config.draw(model, assets);
       if (is_some(config.on_tick)) {
         model = unwrap(config.on_tick)(model);
       }
@@ -47,114 +51,94 @@ export const startSketch = (config) => {
   });
 };
 
-export function createCanvas(p, ...args) {
+export function createCanvas(...args) {
   p.createCanvas(...args);
-  return p;
 }
 
-export function text(p, ...args) {
+export function text(...args) {
   p.text(...args);
-  return p;
 }
 
-export function textFont(p, ...args) {
+export function textFont(...args) {
   p.textFont(...args);
-  return p;
 }
 
-export function textFontFromString(p, ...args) {
+export function textFontFromString(...args) {
   p.textFont(...args);
-  return p;
 }
 
-export function textSize(p, ...args) {
+export function textSize(...args) {
   p.textSize(...args);
-  return p;
 }
 
-export function textWidth(p, ...args) {
+export function textWidth(...args) {
   return p.textWidth(...args);
 }
 
-export function background(p, ...args) {
+export function background(...args) {
   p.background(...args);
-  return p;
 }
 
-export function ellipse(p, ...args) {
+export function ellipse(...args) {
   p.ellipse(...args);
-  return p;
 }
 
-export function circle(p, ...args) {
+export function circle(...args) {
   p.circle(...args);
-  return p;
 }
 
-export function rect(p, ...args) {
+export function rect(...args) {
   p.rect(...args);
-  return p;
 }
 
-export function square(p, ...args) {
+export function square(...args) {
   p.square(...args);
-  return p;
 }
 
-export function line(p, ...args) {
+export function line(...args) {
   p.line(...args);
-  return p;
 }
 
-export function quad(p, ...args) {
+export function quad(...args) {
   p.quad(...args);
-  return p;
 }
 
-export function image(p, ...args) {
+export function image(...args) {
   p.image(...args);
-  return p;
 }
 
-export function fill(p, ...args) {
+export function fill(...args) {
   p.fill(...args);
-  return p;
 }
 
-export function noFill(p, ...args) {
+export function noFill(...args) {
   p.noFill(...args);
-  return p;
 }
 
-export function stroke(p, ...args) {
+export function stroke(...args) {
   p.stroke(...args);
-  return p;
 }
 
-export function noStroke(p, ...args) {
+export function noStroke(...args) {
   p.noStroke(...args);
-  return p;
 }
 
-export function strokeWeight(p, ...args) {
+export function strokeWeight(...args) {
   p.strokeWeight(...args);
-  return p;
 }
 
-export function erase(p, ...args) {
+export function erase(...args) {
   p.erase(...args);
-  return p;
 }
 
-export function noErase(p, ...args) {
+export function noErase(...args) {
   p.noErase(...args);
-  return p;
 }
 
-export function loadImage(p, ...args) {
+export function loadImage(...args) {
   return p.loadImage(...args);
 }
 
-export function loadFont(p, ...args) {
+export function loadFont(...args) {
   return p.loadFont(...args);
 }

@@ -1,9 +1,6 @@
 import gleam/dict
 import gleam/option.{type Option}
 
-/// A reference to the P5js library. Primarily used to access the P5js APIs for drawing.
-pub type P5
-
 /// A reference to a P5js image object. Should be used by passing it to the P5js `image` function.
 pub type P5Image
 
@@ -50,9 +47,9 @@ pub fn get_image(assets: Assets, image_key: String) -> Result(P5Image, Nil) {
 pub opaque type SketchConfig(model, ignored) {
   BaseConfig(
     /// The init function takes a reference to the P5js library and returns the initial model. It should also create the canvas/do any P5 specific initialization.
-    init: fn(P5) -> model,
+    init: fn() -> model,
     /// The draw function takes a reference to the P5js library and the current model then renders it to the screen.
-    draw: fn(P5, model) -> ignored,
+    draw: fn(model) -> ignored,
     /// Called on every frame. on_tick functions take the current model, and return the updated model for the next frame.
     on_tick: Option(fn(model) -> model),
     /// Called whenever a key is pressed down. on_key_pressed functions take a string representing the key that was pressed and a keycode representing the raw key code of the pressed key, and the current model, and return the updated model.
@@ -66,11 +63,11 @@ pub opaque type SketchConfig(model, ignored) {
   )
   ConfigWithLoadingAssets(
     /// The preload function takes a reference to the P5js library and returns the assets that can be used by the sketch. This is needed to load external assets such as fonts and images prior to starting the sketch.
-    preload: fn(P5) -> Assets,
+    preload: fn() -> Assets,
     /// The init function takes a reference to the P5js library and returns the initial model. It should also create the canvas/do any P5 specific initialization.
-    init: fn(P5) -> model,
+    init: fn() -> model,
     /// The draw function takes a reference to the P5js library, any assets loaded during preload, and the current model then renders it to the screen.
-    draw: fn(P5, model, Assets) -> ignored,
+    draw: fn(model, Assets) -> ignored,
     /// Called on every frame. on_tick functions take the current model, and return the updated model for the next frame.
     on_tick: Option(fn(model) -> model),
     /// Called whenever a key is pressed down. on_key_pressed functions take a string representing the key that was pressed and a keycode representing the raw key code of the pressed key, and the current model, and return the updated model.
@@ -86,8 +83,8 @@ pub opaque type SketchConfig(model, ignored) {
 
 /// Creates a minimal sketch configuration.
 pub fn create_sketch(
-  init init: fn(P5) -> model,
-  draw draw: fn(P5, model) -> ignored,
+  init init: fn() -> model,
+  draw draw: fn(model) -> ignored,
 ) -> SketchConfig(model, ignored) {
   BaseConfig(
     init,
@@ -102,9 +99,9 @@ pub fn create_sketch(
 
 /// Creates a sketch configuration that supports preloading assets.
 pub fn create_sketch_with_preloading(
-  preload preload: fn(P5) -> Assets,
-  init init: fn(P5) -> model,
-  draw draw: fn(P5, model, Assets) -> ignored,
+  preload preload: fn() -> Assets,
+  init init: fn() -> model,
+  draw draw: fn(model, Assets) -> ignored,
 ) -> SketchConfig(model, ignored) {
   ConfigWithLoadingAssets(
     preload,
