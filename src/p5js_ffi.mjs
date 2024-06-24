@@ -52,23 +52,23 @@ export const startSketch = (config) => {
 };
 
 export function createCanvas(...args) {
-  p.createCanvas(...args);
+  return p.createCanvas(...args);
 }
 
 export function text(...args) {
-  p.text(...args);
+  return p.text(...args);
 }
 
 export function textFont(...args) {
-  p.textFont(...args);
+  return p.textFont(...args);
 }
 
 export function textFontFromString(...args) {
-  p.textFont(...args);
+  return p.textFont(...args);
 }
 
 export function textSize(...args) {
-  p.textSize(...args);
+  return p.textSize(...args);
 }
 
 export function textWidth(...args) {
@@ -76,63 +76,63 @@ export function textWidth(...args) {
 }
 
 export function background(...args) {
-  p.background(...args);
+  return p.background(...args);
 }
 
 export function ellipse(...args) {
-  p.ellipse(...args);
+  return p.ellipse(...args);
 }
 
 export function circle(...args) {
-  p.circle(...args);
+  return p.circle(...args);
 }
 
 export function rect(...args) {
-  p.rect(...args);
+  return p.rect(...args);
 }
 
 export function square(...args) {
-  p.square(...args);
+  return p.square(...args);
 }
 
 export function line(...args) {
-  p.line(...args);
+  return p.line(...args);
 }
 
 export function quad(...args) {
-  p.quad(...args);
+  return p.quad(...args);
 }
 
 export function image(...args) {
-  p.image(...args);
+  return p.image(...args);
 }
 
 export function fill(...args) {
-  p.fill(...args);
+  return p.fill(...args);
 }
 
 export function noFill(...args) {
-  p.noFill(...args);
+  return p.noFill(...args);
 }
 
 export function stroke(...args) {
-  p.stroke(...args);
+  return p.stroke(...args);
 }
 
 export function noStroke(...args) {
-  p.noStroke(...args);
+  return p.noStroke(...args);
 }
 
 export function strokeWeight(...args) {
-  p.strokeWeight(...args);
+  return p.strokeWeight(...args);
 }
 
 export function erase(...args) {
-  p.erase(...args);
+  return p.erase(...args);
 }
 
 export function noErase(...args) {
-  p.noErase(...args);
+  return p.noErase(...args);
 }
 
 export function loadImage(...args) {
