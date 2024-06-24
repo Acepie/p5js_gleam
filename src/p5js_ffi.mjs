@@ -1,6 +1,6 @@
 import { is_some, unwrap } from "../gleam_stdlib/gleam/option.mjs";
 
-const p = null
+let p = null
 
 export const startSketch = (config) => {
   let model;
