@@ -7,8 +7,9 @@ fn setup(p: P5) -> String {
 }
 
 fn draw(p: P5, state: String) {
-  p5.background(p, "#ffffff")
+  p5.background(p, "#888888")
   p5.fill(p, "#000000")
+  p5.text_align(p, p5.center, p5.center)
   p5.text(p, state, 400.0, 300.0)
 }
 

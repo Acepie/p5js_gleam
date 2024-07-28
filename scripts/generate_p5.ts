@@ -1,88 +1,278 @@
-interface Binding {
-  arguments: string[];
+interface Argument {
+  label: string;
+  type: string;
+}
+
+function argumentToString(argument: Argument) {
+  return `${argument.label} ${argument.label}: ${argument.type}`;
+}
+
+interface FunctionBinding {
+  arguments: Argument[];
   returnType?: string; // defaults to P5
   bindingName?: string; // if not provided, the name of the function will be used
 }
 
-const elements: Record<string, Binding> = {
-  createCanvas: { arguments: ["width: Float", "height: Float"] },
-  text: {
+const functions: Record<string, FunctionBinding> = {
+  createCanvas: {
     arguments: [
-      "text: String",
-      "bottom_corner_x: Float",
-      "bottom_corner_y: Float",
+      {
+        label: "width",
+        type: "Float",
+      },
+      {
+        label: "height",
+        type: "Float",
+      },
     ],
   },
-  textFont: { arguments: ["font: P5Font"] },
-  textFontFromString: { arguments: ["font: String"], bindingName: "textFont" },
-  textSize: { arguments: ["size: Int"] },
-  textWidth: { arguments: ["text: String"], returnType: "Float" },
-  background: { arguments: ["color: String"] },
+  text: {
+    arguments: [
+      {
+        label: "text",
+        type: "String",
+      },
+      {
+        label: "bottom_corner_x",
+        type: "Float",
+      },
+      {
+        label: "bottom_corner_y",
+        type: "Float",
+      },
+    ],
+  },
+  textAlign: {
+    arguments: [
+      {
+        label: "horizontal",
+        type: "String",
+      },
+      {
+        label: "vertical",
+        type: "String",
+      },
+    ],
+  },
+  textFont: {
+    arguments: [
+      {
+        label: "font",
+        type: "P5Font",
+      },
+    ],
+  },
+  textFontFromString: {
+    arguments: [
+      {
+        label: "font",
+        type: "String",
+      },
+    ],
+    bindingName: "textFont",
+  },
+  textSize: {
+    arguments: [
+      {
+        label: "size",
+        type: "Int",
+      },
+    ],
+  },
+  textWidth: {
+    arguments: [
+      {
+        label: "text",
+        type: "String",
+      },
+    ],
+    returnType: "Float",
+  },
+  background: {
+    arguments: [
+      {
+        label: "color",
+        type: "String",
+      },
+    ],
+  },
   ellipse: {
     arguments: [
-      "x_center: Float",
-      "y_center: Float",
-      "width: Float",
-      "height: Float",
+      {
+        label: "x_center",
+        type: "Float",
+      },
+      {
+        label: "y_center",
+        type: "Float",
+      },
+      {
+        label: "width",
+        type: "Float",
+      },
+      {
+        label: "height",
+        type: "Float",
+      },
     ],
   },
   circle: {
-    arguments: ["x_center: Float", "y_center: Float", "diameter: Float"],
+    arguments: [
+      {
+        label: "x_center",
+        type: "Float",
+      },
+      {
+        label: "y_center",
+        type: "Float",
+      },
+      {
+        label: "diameter",
+        type: "Float",
+      },
+    ],
   },
   rect: {
     arguments: [
-      "top_left_x: Float",
-      "top_left_y: Float",
-      "width: Float",
-      "height: Float",
+      {
+        label: "top_left_x",
+        type: "Float",
+      },
+      {
+        label: "top_left_y",
+        type: "Float",
+      },
+      {
+        label: "width",
+        type: "Float",
+      },
+      {
+        label: "height",
+        type: "Float",
+      },
+    ],
+  },
+  triangle: {
+    arguments: [
+      {
+        label: "point1_x",
+        type: "Float",
+      },
+      {
+        label: "point1_y",
+        type: "Float",
+      },
+      {
+        label: "point2_x",
+        type: "Float",
+      },
+      {
+        label: "point2_y",
+        type: "Float",
+      },
+      {
+        label: "point3_x",
+        type: "Float",
+      },
+      {
+        label: "point3_y",
+        type: "Float",
+      },
     ],
   },
   square: {
-    arguments: ["top_left_x: Float", "top_left_y: Float", "side_length: Float"],
+    arguments: [
+      {
+        label: "top_left_x",
+        type: "Float",
+      },
+      {
+        label: "top_left_y",
+        type: "Float",
+      },
+      {
+        label: "side_length",
+        type: "Float",
+      },
+    ],
   },
   line: {
     arguments: [
-      "point1_x: Float",
-      "point1_y: Float",
-      "point2_x: Float",
-      "point2_y: Float",
+      {
+        label: "point1_x",
+        type: "Float",
+      },
+      {
+        label: "point1_y",
+        type: "Float",
+      },
+      {
+        label: "point2_x",
+        type: "Float",
+      },
+      {
+        label: "point2_y",
+        type: "Float",
+      },
     ],
   },
   quad: {
     arguments: [
-      "p1_x: Float",
-      "p1_y: Float",
-      "p2_x: Float",
-      "p2_y: Float",
-      "p3_x: Float",
-      "p3_y: Float",
-      "p4_x: Float",
-      "p4_y: Float",
+      { label: "point1_x", type: "Float" },
+      { label: "point1_y", type: "Float" },
+      { label: "point2_x", type: "Float" },
+      { label: "point2_y", type: "Float" },
+      { label: "point3_x", type: "Float" },
+      { label: "point3_y", type: "Float" },
+      { label: "point4_x", type: "Float" },
+      { label: "point4_y", type: "Float" },
     ],
   },
   image: {
     arguments: [
-      "image: P5Image",
-      "top_left_x: Float",
-      "top_left_y: Float",
-      "width: Float",
-      "height: Float",
+      { label: "image", type: "P5Image" },
+      { label: "top_left_x", type: "Float" },
+      { label: "top_left_y", type: "Float" },
+      { label: "width", type: "Float" },
+      { label: "height", type: "Float" },
     ],
   },
-  fill: { arguments: ["color_hex: String"] },
+  fill: { arguments: [{ label: "color_hex", type: "String" }] },
   noFill: { arguments: [] },
-  stroke: { arguments: ["color_hex: String"] },
+  stroke: { arguments: [{ label: "color_hex", type: "String" }] },
   noStroke: { arguments: [] },
-  strokeWeight: { arguments: ["weight: Int"] },
-  erase: { arguments: ["strength: Int", "edge_strength: Int"] },
+  strokeWeight: { arguments: [{ label: "weight", type: "Int" }] },
+  erase: {
+    arguments: [
+      { label: "strength", type: "Int" },
+      { label: "edge_strength", type: "Int" },
+    ],
+  },
   noErase: { arguments: [] },
   loadImage: {
-    arguments: ["path: String"],
+    arguments: [{ label: "path", type: "String" }],
     returnType: "P5Image",
   },
   loadFont: {
-    arguments: ["path: String"],
+    arguments: [{ label: "path", type: "String" }],
     returnType: "P5Font",
+  },
+};
+
+interface ConstantBinding {
+  value?: any; // if not provided, the name of the constant will be used
+  type?: string; // defaults to string
+  bindingName?: string; // if not provided, the name of the constant will be used
+}
+
+const constants: Record<string, ConstantBinding> = {
+  right: {},
+  left: {},
+  center: {},
+  top: {},
+  bottom: {},
+  baseline: {
+    value: "alphabetic",
   },
 };
 
@@ -105,16 +295,18 @@ const js = (name: string, bindingName: string, isReturningOriginal: boolean) =>
 
 `;
 
-const gleam = (name: string, binding: Binding) =>
+const gleam = (name: string, binding: FunctionBinding) =>
   `/// A binding to the p5.js [\`${
     binding.bindingName ?? name
-  }\`](https://p5js.org/reference/#/p5/${
+  }\`](https://p5js.org/reference/p5/${
     binding.bindingName ?? name
   }) function. Takes a p5 instance and the function's arguments and returns the p5 instance.
 @external(javascript, "../p5js_ffi.mjs", "${name}")
-pub fn ${camelToSnakeCase(name)}(p: P5${
+pub fn ${camelToSnakeCase(name)}(sketch_instance p: P5${
     binding.arguments.length ? ", " : ""
-  }${binding.arguments.join(", ")}) -> ${binding.returnType ?? "P5"}
+  }${binding.arguments.map((a) => argumentToString(a)).join(", ")}) -> ${
+    binding.returnType ?? "P5"
+  }
 
 `;
 
@@ -177,13 +369,19 @@ export const startSketch = (config) => {
 
 `;
 
-for (const [elementName, elementBinding] of Object.entries(elements)) {
+for (const [elementName, elementBinding] of Object.entries(functions)) {
   outGleam += gleam(elementName, elementBinding);
   outJs += js(
     elementName,
     elementBinding.bindingName ?? elementName,
     Boolean(elementBinding.returnType)
   );
+}
+
+for (const [constantName, constantBinding] of Object.entries(constants)) {
+  outGleam += `pub const ${constantBinding.bindingName ?? constantName} = "${
+    constantBinding.value ?? constantName
+  }"\n\n`;
 }
 
 await Promise.all([

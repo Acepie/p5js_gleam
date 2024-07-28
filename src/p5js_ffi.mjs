@@ -57,6 +57,11 @@ export function text(p, ...args) {
   return p;
 }
 
+export function textAlign(p, ...args) {
+  p.textAlign(...args);
+  return p;
+}
+
 export function textFont(p, ...args) {
   p.textFont(...args);
   return p;
@@ -93,6 +98,11 @@ export function circle(p, ...args) {
 
 export function rect(p, ...args) {
   p.rect(...args);
+  return p;
+}
+
+export function triangle(p, ...args) {
+  p.triangle(...args);
   return p;
 }
 
@@ -158,3 +168,4 @@ export function loadImage(p, ...args) {
 export function loadFont(p, ...args) {
   return p.loadFont(...args);
 }
+
